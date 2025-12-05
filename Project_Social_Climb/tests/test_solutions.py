@@ -14,6 +14,8 @@ def test_valid_solutions(main_page, solutions_page, link_method, text_method, le
     getattr(solutions_page, learn_more_method)()
     assert solutions_page.is_schedule_a_demo_visible()
 
+# Combine all test ^^ 
+
 # def test_valid_solutions_pe_funded_practices(main_page, solutions_page):
 #     """
 #     Verify that the 'PE-Funded Practices' solution is displayed,

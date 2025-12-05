@@ -5,8 +5,7 @@ def test_links_visible(main_page, company_page):
     after navigating from the main page.
     """
     main_page.click_company_link()
-    
-    assert company_page.is_link_displayed(company_page.links["about"]) is True
-    assert company_page.is_link_displayed(company_page.links["careers"]) is True
-    assert company_page.is_link_displayed(company_page.links["leadership"]) is True
-    assert company_page.is_link_displayed(company_page.links["mentions"]) is True
+    assert company_page.is_link_visible("about")
+    assert company_page.is_link_visible("careers")
+    assert company_page.is_link_visible("leadership")
+    assert company_page.is_link_visible("mentions")

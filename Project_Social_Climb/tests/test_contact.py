@@ -5,7 +5,7 @@ def test_contact_form_fields(main_page, contact_page):
     Submission is disabled to avoid sending real data.
     """
     main_page.click_contact_link()
-    contact_page.switch_to_iframe()
+    contact_page.open_contact_form()
     contact_page.enter_first_name("Daniel")
     contact_page.enter_last_name("Lee")
     contact_page.enter_email("dlee@socialclimb.com")

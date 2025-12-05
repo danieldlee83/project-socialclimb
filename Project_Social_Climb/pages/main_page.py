@@ -1,10 +1,10 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from Project_Social_Climb.pages.base_page import BasePage
 
-class MainPage:
+
+class MainPage(BasePage):
     def __init__(self, driver):
-        self.driver = driver
+        super().__init__(driver)
         self.solution_link = (By.LINK_TEXT, "Solutions")
         self.features_link = (By.LINK_TEXT, "Features")
         self.resources_link = (By.LINK_TEXT, "Resources")
@@ -14,30 +14,24 @@ class MainPage:
         self.login_link = (By.LINK_TEXT, "Login")
 
     def click_solutions_link(self): 
-        """Click the 'Solutions' link on the main page."""
-        self._click(self.solution_link)
+        self.click(self.solution_link)
 
-    def click_features_link(self): self._click(self.features_link)
+    def click_features_link(self): 
+        self.click(self.features_link)
 
-    def click_resources_link(self): self._click(self.resources_link)
+    def click_resources_link(self): 
+        self.click(self.resources_link)
 
-    def click_company_link(self): self._click(self.company_link)
+    def click_company_link(self): 
+        self.click(self.company_link)
 
-    def click_contact_link(self): self._click(self.contact_link)
+    def click_contact_link(self): 
+        self.click(self.contact_link)
 
-    def click_blog_link(self): self._click(self.blog_link)
+    def click_blog_link(self): 
+        self.click(self.blog_link)
 
-    def click_login_link(self): self._click(self.login_link)
-
-    def _click(self, locator, timeout=10):
-        """Wait until the element is clickable, then click it."""
-        try:
-            element = WebDriverWait(self.driver, timeout).until(
-                EC.element_to_be_clickable(locator)
-            )
-            element.click()
-            return element
-        except Exception as e:
-            raise RuntimeError(f"Element {locator} not clickable") from e
+    def click_login_link(self): 
+        self.click(self.login_link)
 
 
