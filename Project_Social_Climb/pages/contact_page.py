@@ -36,5 +36,5 @@ class ContactPage(BasePage):
         self.enter_text(self.social_climb_input, text)
     
     def click_submit_button(self):
-        self.click(self.go_back_to_login)
+        self.click(self.submit_button)
 

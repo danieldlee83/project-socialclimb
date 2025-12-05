@@ -7,11 +7,13 @@ from Project_Social_Climb.pages.company_page import CompanyPage
 from Project_Social_Climb.pages.contact_page import ContactPage
 from Project_Social_Climb.pages.login_page import LoginPage
 
+BASE_URL = "https://socialclimb.com/"
+
 @pytest.fixture(scope="session")
 def driver():
     driver = webdriver.Chrome(service=Service())
     driver.maximize_window()
-    driver.get("https://socialclimb.com/")
+    driver.get(BASE_URL)
     yield driver
     driver.quit()
 

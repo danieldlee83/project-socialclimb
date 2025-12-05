@@ -7,7 +7,7 @@ class LoginPage(BasePage):
         self.username_input = (By.CSS_SELECTOR, "#input_0")
         self.password_input = (By.CSS_SELECTOR, "#input_1")
         self.email_input = (By.CSS_SELECTOR, "#input_2")
-        self.forgot_login = (By.CSS_SELECTOR, "a[href='./forgot']")
+        self.forgot_password_link = (By.CSS_SELECTOR, "a[href='./forgot']")
         self.sign_in_button = (By.CSS_SELECTOR, "button[aria-label='LOG IN']")
         self.send_reset_link_button = (By.CSS_SELECTOR, "button[aria-label='SEND RESET LINK']")
         self.go_back_to_login = (By.CSS_SELECTOR, "a[href='./login']")
@@ -22,7 +22,7 @@ class LoginPage(BasePage):
         self.enter_text(self.email_input, email)
     
     def click_forgot_password(self): 
-        self.click(self.forgot_login)
+        self.click(self.forgot_password_link)
     
     def click_go_back_to_login(self): 
         self.click(self.go_back_to_login)
@@ -31,10 +31,10 @@ class LoginPage(BasePage):
         self.click(self.sign_in_button)
 
     def is_sign_in_button_disabled(self):
-        return self.is_button_disabled(self.sign_in_button)
+        return self.is_button_state(self.sign_in_button, enabled=False)
 
     def is_send_reset_link_button_enabled(self):
-        return self.is_button_enabled(self.send_reset_link_button)
+        return self.is_button_state(self.send_reset_link_button, enabled=True)
 
     def login(self, username, password):
         """Perform the full login flow."""

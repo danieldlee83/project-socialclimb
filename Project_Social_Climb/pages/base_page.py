@@ -43,23 +43,42 @@ class BasePage:
             return element.is_displayed()
         except TimeoutException:
             return False
-        
-    def is_button_disabled(self, locator):
-        """Check if a button is disabled."""
+
+
+    # If you value readability in tests
+    # def _get_button_state(self, locator):
+    #     """Return True if button is enabled, False if disabled, None if not found."""
+    #     try:
+    #         button = self.driver.find_element(*locator)
+    #         return button.is_enabled() and (button.get_attribute("disabled") is None)
+    #     except NoSuchElementException:
+    #         return None
+
+    # def is_button_enabled(self, locator):
+    #     state = self._get_button_state(locator)
+    #     return state is True
+
+    # def is_button_disabled(self, locator):
+    #     state = self._get_button_state(locator)
+    #     return state is False
+     
+    # If you value DRY code
+    def is_button_state(self, locator, enabled=True):
+        """
+        Check if a button is enabled or disabled.
+        Args:
+            locator (tuple): Selenium locator for the button.
+            enabled (bool): True to check if enabled, False to check if disabled.
+        Returns:
+            bool: True if the button matches the expected state, False otherwise.
+        """
         try:
             button = self.driver.find_element(*locator)
-            return (not button.is_enabled()) or (button.get_attribute("disabled") is not None)
+            state = button.is_enabled() and (button.get_attribute("disabled") is None)
+            return state if enabled else not state
         except NoSuchElementException:
             return False
 
-    def is_button_enabled(self, locator):
-        """Check if a button is enabled."""
-        try:
-            button = self.driver.find_element(*locator)
-            return button.is_enabled() and (button.get_attribute("disabled") is None)
-        except NoSuchElementException:
-            return False
-        
     def get_text(self, locator, timeout=10):
         """Retrieve visible text from an element."""
         element = WebDriverWait(self.driver, timeout).until(
